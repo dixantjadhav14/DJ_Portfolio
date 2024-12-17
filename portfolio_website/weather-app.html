@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Specific styles for weather-app.html */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: rgb(68, 68, 68);
+            color: var(--color-white);
+            margin: 0;
+            padding: 0;
+        }
+
+        .weather-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--color-white);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        .weather-header, .weather-footer {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .weather-header h1 {
+            font-size: 3em;
+            color: rgb(68, 68, 68);
+            margin-bottom: 10px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .home-button svg {
+            fill: #00BFFF; /* Blue color */
+        }
+
+        .weather-section h2 {
+            font-size: 2em;
+            color: var(--second-color);
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--second-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .weather-section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .weather-links {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .weather-links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: var(--color-white);
+            background: var(--second-color);
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .weather-links a:hover {
+            background: var(--first-color);
+            transform: translateY(-5px);
+        }
+
+        .weather-video {
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            display: block;
+            margin: 20px 0;
+            border: 2px solid var(--second-color);
+            border-radius: 8px;
+        }
+
+        .weather-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--body-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .weather-section:hover {
+            transform: translateY(-10px);
+            background-color: var(--second-color);
+            color: var (--color-white);
+        }
+
+        .weather-section:hover h2 {
+            color: var(--color-white);
+        }
+
+        .weather-footer p {
+            font-size: 1em;
+            color: var(--text-color-second);
+            margin: 0;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--second-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .back-to-home a i {
+            margin-right: 8px;
+        }
+
+        .back-to-home a:hover {
+            color: var(--first-color);
+        }
+    </style>
+    <script>
+        function showSolution(solutionNumber) {
+            const solutionVideos = {
+                1: 'https://www.youtube.com/embed/zKzvZUxQ-CQ',
+                2: 'https://www.youtube.com/embed/sgVk5iOZglU',
+                3: 'https://www.youtube.com/embed/qWo8UmCyOTw'
+            };
+
+            const solutionDescriptions = {
+                1: 'This solution uses SQLite for data storage and Geopy for fetching geographical coordinates. The weather data is fetched from a weather API and stored in the SQLite database. The user can query past and future weather data.',
+                2: 'This solution provides a graphical user interface using Tkinter. Users can input a city name and date to fetch and display weather data. The interface shows temperature, humidity, wind speed, and other weather details.',
+                3: 'This solution integrates a voice assistant that uses speech recognition to interact with the user. Users can ask for current, past, and future weather updates by speaking to the assistant. The assistant fetches the data and reads it back to the user.'
+            };
+
+            document.getElementById('solution-description').textContent = solutionDescriptions[solutionNumber];
+            document.getElementById('solution-video').src = solutionVideos[solutionNumber];
+            document.getElementById('video-section').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="weather-container">
+        <header class="weather-header">
+            <a href="index.html" class="home-button" title="Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+            </a>
+            <h1>Weather App</h1>
+        </header>
+        <main>
+            <section class="weather-section">
+                <h2>About the Project</h2>
+                <p>This weather app provides real-time weather updates for different locations. It uses the API to fetch weather data and provides three different solutions for users to interact with the app.</p>
+            </section>
+            <section class="weather-links">
+                <a onclick="showSolution(1)">SQLite and Geopy</a>
+                <a onclick="showSolution(2)">Tkinter GUI</a>
+                <a onclick="showSolution(3)">Voice Assistant</a>
+            </section>
+            <section id="video-section" class="weather-section" style="display: none;">
+                <h2>Solution Details</h2>
+                <p id="solution-description"></p>
+                <iframe id="solution-video" class="weather-video" frameborder="0" allowfullscreen></iframe>
+            </section>
+        </main>
+        <footer class="weather-footer">
+            <p>&copy; 2024 Weather App. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
